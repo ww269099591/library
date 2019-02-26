@@ -38,9 +38,9 @@ spring:
       #模板加载的位置
       template-loader-path: classpath:/templates
       #后缀
-      suffix: .htm
+      suffix: .html
       #前缀
-      prefix: /htm/
+      #prefix: /htm/
 mybatis:
   #实体类所做包
   type-aliases-package: com.ww.library.entity

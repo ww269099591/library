@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -23,12 +24,14 @@ public class TestController {
     }
     @RequestMapping("test")
     @ResponseBody
-    public Book findBook(){
-        Book book =new Book();
-        book.setId(1);
-        book.setName("2");
-        return book;
+    public ModelAndView findBook(){
+        List<Book> books=testService.findAllBooks();
+        ModelAndView view =new ModelAndView("index");
+        view.addObject("books",books);
+        return view;
     }
+
+
 
 
 }

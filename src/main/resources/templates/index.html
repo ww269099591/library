@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+
+    <title>首页</title>
+</head>
+<style>
+    html{
+        background-color: #f78d5f;
+    }
+</style>
+<body>
+<#list books as book>
+<div class="list">
+    <p class="licenseNum">
+        书id: <span>${book.id}</span>
+    </p>
+
+    <p class="validityTime">
+        书名: <span>${book.name}</span>
+    </p>
+</div>
+</#list>
+</body>
+</html>
