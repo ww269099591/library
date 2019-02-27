@@ -5,16 +5,12 @@
 
     <title>首页</title>
 </head>
-<style>
-    html{
-        background-color: #f78d5f;
-    }
-</style>
+    <link rel="stylesheet" type="text/css" href="../main.css"/>
 <body>
 <#list books as book>
 <div class="list">
     <p class="licenseNum">
-        书id: <span>${book.id}</span>
+        id: <span>${book.id}</span>
     </p>
 
     <p class="validityTime">
@@ -22,5 +18,9 @@
     </p>
 </div>
 </#list>
+<div class="box">
+
+</div>
+<!--<img src="../sunrise.jpg" width="300px"/>-->
 </body>
 </html>
