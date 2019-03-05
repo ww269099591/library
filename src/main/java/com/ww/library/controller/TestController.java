@@ -2,6 +2,7 @@ package com.ww.library.controller;
 
 import com.ww.library.dao.TestDao;
 import com.ww.library.entity.Book;
+import com.ww.library.service.BookService;
 import com.ww.library.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import java.util.List;
 public class TestController {
     @Autowired
     private TestService testService;
+    @Autowired
+    private BookService bookService;
 
     @RequestMapping("findAllBooks")
     @ResponseBody
@@ -30,6 +33,15 @@ public class TestController {
         view.addObject("books",books);
         return view;
     }
+    @RequestMapping("findBooksByKeyWord")
+    @ResponseBody
+    public ModelAndView findBooksByKeyWord(String keyword){
+        List<Book> books=bookService.findBooksByKeyWord(keyword);
+        ModelAndView view =new ModelAndView("index");
+        view.addObject("books",books);
+        return view;
+    }
+
 
 
 
