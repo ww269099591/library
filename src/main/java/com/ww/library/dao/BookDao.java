@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface BookDao {
     //根据一个随便值查找字段
-    public List<Book> findBooksByKeyWord(String keyword);
+    List<Book> findBooksByKeyWord(String keyword);
 }

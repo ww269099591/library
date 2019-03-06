@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+   {{now()}}
+    {{time}}
+</div>
+<script>
+    var app=new Vue({
+        el: '#app',
+        methods:{
+            now:function(){
+                return Date.now();
+            }
+        },
+        computed:{
+            time:function(){
+                return Date.now();
+            }
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

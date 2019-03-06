@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ww.library.dao.BookDao">
 
-    <select id="findAllBooks" resultType="com.ww.library.entity.Book" parameterType="java.lang.String">
-        select * from book where name=#{0} or author=#{0} or publish=#{0}
+    <select id="findBooksByKeyWord" resultType="com.ww.library.entity.Book" parameterType="java.lang.String">
+        select * from book where name like "%"#{keyword}"%" or author like "%"#{keyword}"%"
     </select>
 
 </mapper>

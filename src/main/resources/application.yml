@@ -46,3 +46,6 @@ mybatis:
   type-aliases-package: com.ww.library.entity
   #mapper.xml所在位置
   mapper-locations: classpath:mappers/*.xml
+# spring boot集成mybatis的方式打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
