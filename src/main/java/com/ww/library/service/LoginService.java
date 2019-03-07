@@ -1,5 +1,7 @@
 package com.ww.library.service;
 
+import com.ww.library.entity.Member;
+
 public interface LoginService {
-    String ReaderLogin(String username,String password);
+    Member memberLogin(String username);
 }
