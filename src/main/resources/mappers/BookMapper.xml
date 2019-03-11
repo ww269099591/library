@@ -127,7 +127,7 @@
   </update>
   <select id="findBooksByKeyWord" resultType="com.ww.library.entity.Book" parameterType="java.lang.String">
     select * from book
-    where author="%"#{keyword}"%" or
-    name= "%"#{keyword}"%"
+    where author like "%"#{keyword}"%" or
+    name like "%"#{keyword}"%"
   </select>
 </mapper>

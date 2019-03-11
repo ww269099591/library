@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller("Book")
+@RequestMapping("Book")
 public class BookController {
     @Autowired
     BookService bookService;
@@ -23,5 +24,4 @@ public class BookController {
         view.addObject("books",books);
         return view;
     }
-
 }

@@ -14,6 +14,12 @@ import javax.servlet.http.HttpSession;
 public class ReaderLoginController {
     @Autowired
     LoginService loginService;
+    @RequestMapping("ToReaderLogin")
+    public ModelAndView ToReaderLogin(){
+        ModelAndView mv=new ModelAndView("login");
+        return mv;
+    }
+
     @RequestMapping("ReaderLogin")
     public ModelAndView ReaderLogin(String username, String password, HttpSession session){
         Member member=loginService.memberLogin(username);
@@ -21,7 +27,7 @@ public class ReaderLoginController {
             ModelAndView mv=new ModelAndView("login");
             mv.addObject("message","wrong");
             return mv;
-        } else {
+        }else{
                 ModelAndView mv=new ModelAndView("index");
                 mv.addObject("message","success");
                 session.setAttribute("_session_user",member);
