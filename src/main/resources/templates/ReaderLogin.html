@@ -9,8 +9,9 @@
     <link rel="stylesheet" type="text/css" href="../main.css"/>
 <body>
 <form id="loginForm" action="/Reader/ReaderLogin" method="post">
+    <input type="hidden" id="message" value="${message?if_exists}">
     <input type="text" id="username" name="username" placeholder="用户名">
-    <input type="text" id="password" name="password" placeholder="密码"><br>
+    <input type="password" id="password" name="password" placeholder="密码"><br>
     <input type="submit" value="登陆" />
 </form>
 <!--<img src="../sunrise.jpg" width="300px"/>-->

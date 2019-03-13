@@ -80,7 +80,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectMemberByUsername" parameterType="java.lang.String">
+  <select id="selectMemberByUsername" parameterType="java.lang.String" resultType="com.ww.library.entity.Member">
     select * from member where username=#{username}
   </select>
 
