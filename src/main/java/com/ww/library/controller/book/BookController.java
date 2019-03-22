@@ -4,6 +4,7 @@ import com.ww.library.entity.Book;
 import com.ww.library.service.BookService;
 import com.ww.library.util.UploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,10 +19,12 @@ import java.util.UUID;
 
 @Controller("Book")
 @RequestMapping("Book")
-
 public class BookController {
     @Autowired
     BookService bookService;
+
+    @Value("${wangwei}")
+    private String xxx;
 
     @RequestMapping("findBooksByKeyWord")
     @ResponseBody
@@ -33,6 +36,7 @@ public class BookController {
     }
 
     @RequestMapping("saveBook")
+    @ResponseBody
     public String saveBook(HttpServletRequest request, MultipartFile file) {
         String uploadDir = "../cover";
         try {
@@ -48,5 +52,13 @@ public class BookController {
             return "上传失败";
         }
         return "上传成功";
+    }
+
+    @RequestMapping("toSaveBooks")
+    public String toSaveBooks(){
+
+
+        System.out.print(xxx);
+        return "SaveBooks";
     }
 }
