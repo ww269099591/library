@@ -36,9 +36,11 @@ public class BookController {
     }
 
     @RequestMapping("saveBook")
-    @ResponseBody
     public String saveBook(HttpServletRequest request, MultipartFile file) {
-        String uploadDir = "../cover";
+        if (file==null){
+            return "文件为空";
+        }
+        String uploadDir = "D:/workplace/library/src/main/resources/static/cover/";
         try {
             String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
             //上传文件名
@@ -56,9 +58,13 @@ public class BookController {
 
     @RequestMapping("toSaveBooks")
     public String toSaveBooks(){
-
-
-        System.out.print(xxx);
         return "SaveBooks";
     }
+    @RequestMapping("showBooks")
+    public ModelAndView showBooks(){
+        ModelAndView mv=new ModelAndView("showBooks");
+        mv.addObject("imagePath","cover/1d83385d-8c33-4659-b697-e4631ee147a9.jpg");
+        return mv;
+    }
+
 }
