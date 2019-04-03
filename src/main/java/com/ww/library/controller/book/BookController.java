@@ -23,14 +23,22 @@ public class BookController {
     @Autowired
     BookService bookService;
 
+    @Value("${classPath}")
+    private String classPath;
+
     @Value("${wangwei}")
     private String xxx;
 
     @RequestMapping("findBooksByKeyWord")
     @ResponseBody
     public ModelAndView findBooksByKeyWord(String keyword) {
-        List<Book> books = bookService.findBooksByKeyWord(keyword);
         ModelAndView view = new ModelAndView("index");
+        if(keyword==null){
+            view.addObject("result","success");
+            return view;
+        }
+        List<Book> books = bookService.findBooksByKeyWord(keyword);
+        view.addObject("result","fail");
         view.addObject("books", books);
         return view;
     }
@@ -40,7 +48,7 @@ public class BookController {
         if (file==null){
             return "文件为空";
         }
-        String uploadDir = "D:/workplace/library/src/main/resources/static/cover/";
+        String uploadDir=classPath+"cover/";
         try {
             String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
             //上传文件名
