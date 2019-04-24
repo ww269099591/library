@@ -5,9 +5,10 @@
     <title>上传图片</title>
 </head>
 <body>
-<form action="/Book/saveBook" method="post" enctype="multipart/form-data"  role="form"
+<form action="/Book/updateBookCover" method="post" enctype="multipart/form-data"  role="form"
       enctype="multipart/form-data">
     <input type="file" name="file">
+    <input type="hidden" name="bookId" value="2">
     <input type="submit" value="文件上传">
 </form>
 </body>

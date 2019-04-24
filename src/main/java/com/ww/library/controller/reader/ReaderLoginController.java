@@ -40,8 +40,5 @@ public class ReaderLoginController {
                 return mv;
         }
     }
-    @RequestMapping("toIndex")
-    public String ToIndex(){
-        return "index";
-    }
+
 }

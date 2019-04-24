@@ -8,9 +8,12 @@
     <link rel="stylesheet" type="text/css" href="../main.css"/>
     <script src="../asset/jquery-3.3.1.js"></script>
     <script src="../asset/base.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 <body>
 <input id="keyword" type="hidden" value="三">
+
 <div id="app">
+    <input id="result" value=>
     <p>这不是ajax请求的文字</p>
     <button id="button">ajax请求</button>
 
@@ -21,19 +24,18 @@ $(document).ready(function(){
     $("#button").click(function(){
        $.ajax({
            type:'POST',
-           url:path+"/Book/findBooksByKeyWord?keyword="+keyword,
+           url:path+"/Book/ajaxFindBooksByKeyWord",
            dataType:"json",
            data:{
-               "keywords":"三"
+               "keyword":keyword
            },
            success:function (data) {
-               alert("成功");
+               $("#result").val(data.result);
+
            }
        });
     });
 });
 </script>
-
-
 </body>
 </html>

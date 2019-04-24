@@ -130,4 +130,12 @@
     where author like "%"#{keyword}"%" or
     name like "%"#{keyword}"%"
   </select>
+
+  <update id="updateBookCover">
+    update book set image= #{coverPath} where  id=#{id}
+  </update>
+
+ <select id="findCoverPathByid" parameterType="java.lang.Integer" resultType="java.lang.String">
+   select image from  book where  id=#{bookId}
+ </select>
 </mapper>

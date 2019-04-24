@@ -3,6 +3,7 @@ package com.ww.library.dao;
 import com.ww.library.entity.Book;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BookMapper {
     int deleteByPrimaryKey(Integer id);
@@ -18,4 +19,8 @@ public interface BookMapper {
     int updateByPrimaryKey(Book record);
 
     List<Book> findBooksByKeyWord(String keyword);
+
+    void updateBookCover(Map<String,Object> map);
+
+    String findCoverPathByid(Integer bookId);
 }
