@@ -31,7 +31,11 @@ public interface BookService {
      */
     String saveCover(Integer bookId,MultipartFile file,String path);
 
-    String findCoverPathByid(Integer bookId);
+    String findCoverPathById(Integer bookId);
+
+    List<Book> findAllBooks(Integer start,Integer pageSize);
+
+    Integer countBooks();
 
 
 }

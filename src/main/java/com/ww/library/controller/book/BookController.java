@@ -91,4 +91,14 @@ public class BookController {
     public String ToIndex(){
         return "index";
     }
+
+    @RequestMapping("findAllBooks")
+    @ResponseBody
+    public ModelAndView findAllBooks(Integer start,Integer pageSize){
+           ModelAndView mv=new ModelAndView();
+
+           Integer count =bookService.countBooks();
+           List<Book> books= bookService.findAllBooks(start,pageSize);
+           return mv;
+    }
 }

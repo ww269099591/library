@@ -132,10 +132,18 @@
   </select>
 
   <update id="updateBookCover">
-    update book set image= #{coverPath} where  id=#{id}
+    update book set image= #{coverPath} where id=#{id}
   </update>
 
- <select id="findCoverPathByid" parameterType="java.lang.Integer" resultType="java.lang.String">
+ <select id="findCoverPathById" parameterType="java.lang.Integer" resultType="java.lang.String">
    select image from  book where  id=#{bookId}
  </select>
+  
+  <select id="findAllBooks" resultType="com.ww.library.entity.Book">
+    select * from book limit #{start},#{end}
+  </select>
+
+  <select id="countBooks" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(*) from book
+  </select>
 </mapper>

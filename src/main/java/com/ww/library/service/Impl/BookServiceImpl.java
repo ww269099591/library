@@ -35,7 +35,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public String saveCover(Integer bookId, MultipartFile file, String path) {
         String uploadDir = path + "cover/";
-        String oldFileName = findCoverPathByid(bookId);
+        String oldFileName = findCoverPathById(bookId);
         try {
             String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
             String filename = UUID.randomUUID() + suffix;
@@ -63,11 +63,23 @@ public class BookServiceImpl implements BookService {
         return "success";
     }
     @Override
-    public String findCoverPathByid(Integer bookId) {
-        String coverPath=bookDao.findCoverPathByid(bookId);
+    public String findCoverPathById(Integer bookId) {
+        String coverPath=bookDao.findCoverPathById(bookId);
         if(Utils.isEmpty(coverPath)){
             return null;
         }
         return coverPath;
     }
+
+    @Override
+    public List<Book> findAllBooks(Integer start, Integer pageSize) {
+        Integer end=start+pageSize;
+        return bookDao.findAllBooks(start,end);
+    }
+
+    @Override
+    public Integer countBooks() {
+        return bookDao.countBooks();
+    }
+
 }

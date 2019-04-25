@@ -1,6 +1,7 @@
 package com.ww.library.dao;
 
 import com.ww.library.entity.Book;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -22,5 +23,9 @@ public interface BookMapper {
 
     void updateBookCover(Map<String,Object> map);
 
-    String findCoverPathByid(Integer bookId);
+    String findCoverPathById(Integer bookId);
+
+    List<Book> findAllBooks(@Param("start") Integer start,@Param("end") Integer end);
+
+    Integer countBooks();
 }
