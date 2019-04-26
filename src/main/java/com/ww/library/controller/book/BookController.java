@@ -95,11 +95,13 @@ public class BookController {
 
     @RequestMapping("findAllBooks")
     @ResponseBody
-    public ModelAndView findAllBooks(Integer start,Integer pageSize){
-           ModelAndView mv=new ModelAndView();
-
+    public ModelAndView findAllBooks(Integer start){
+           Integer pageSize=10;
+           ModelAndView mv=new ModelAndView("ShowBooks");
            Integer count =bookService.countBooks();
            List<Book> books= bookService.findAllBooks(start,pageSize);
+           mv.addObject("books",books);
+           mv.addObject("pages",count/pageSize+1);
            return mv;
     }
 }

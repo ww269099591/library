@@ -1,15 +1,53 @@
 <!DOCTYPE html>
-<html >
+<div >
 <head>
     <meta charset="UTF-8">
-
+    <link rel="stylesheet" type="text/css" href="../main.css"/>
+    <script src="../asset/jquery-3.3.1.js"></script>
+    <script src="../asset/base.js"></script>
     <title>首页</title>
 </head>
-    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../main.css"/>
-<body>
-<img src=../cover/${imagePath} width="300px"/>
-<img src="../cover/1d83385d-8c33-4659-b697-e4631ee147a9.jpg" width="300px"/>
+<#if books?? >
+<div class="resultList" id="resultList" >
+    <#list books as book>
+    <div class="list">
+        <p class="bookName">
+            书名: <span>${book.name}</span>
+        </p>
+        <p class="validityTime">
+            作者: <span>${book.author}</span>
+        </p>
+    </div>
+    </#list>
+</div>
+<div>
+</#if>
+<#list 1..pages as t >
+<button id=${t} class=jump>${t}</button>
+</#list>
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        $(".jump").click(function () {
+            var start=this.id*10+1;
+
+           $.ajax({
+            type:'POST',
+            url:path+"/Book/findAllBooks",
+            dataType:"json",
+            data:{
+                "start":start
+            },
+            success:function (data) {
+                alert(this.id)
+
+            }
+        });
+        });
+    });
+</script>
 
 </body>
 </html>

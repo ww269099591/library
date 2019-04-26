@@ -73,7 +73,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> findAllBooks(Integer start, Integer pageSize) {
-        Integer end=start+pageSize;
+        Integer end=start+pageSize-1;
         return bookDao.findAllBooks(start,end);
     }
 
