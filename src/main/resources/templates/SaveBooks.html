@@ -7,9 +7,37 @@
 <body>
 <form action="/Book/updateBookCover" method="post" enctype="multipart/form-data"  role="form"
       enctype="multipart/form-data">
-    <input type="file" name="file">
+    <input type="file" name="file" onchange="isPicFile(this.value)">
     <input type="hidden" name="bookId" value="2">
-    <input type="submit" value="文件上传">
+    <input id="submit" type="submit" value="文件上传" disabled="true">
 </form>
+<script>
+    function isPicFile(fileName) {
+        //lastIndexOf如果没有搜索到则返回为 -1
+        if (fileName.lastIndexOf(".") != -1) {
+            var fileType = (fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length)).toLowerCase();
+            var suppotFile = new Array();
+            suppotFile[0] = "jpg";
+            suppotFile[1] = "gif";
+            suppotFile[2] = "bmp";
+            suppotFile[3] = "png";
+            suppotFile[4] = "jpeg";
+            for ( var i = 0; i < suppotFile.length; i++) {
+                if (suppotFile[i] == fileType) {
+                    document.getElementById("submit").removeAttribute('disabled');
+                    return true;
+                } else {
+                    continue;
+                }
+            }
+            alert("文件类型不合法,只能是jpg、gif、bmp、png、jpeg、png类型！");
+            return false;
+        } else {
+            alert("文件类型不合法,只能是 jpg、gif、bmp、png、jpeg、png类型！");
+            return false;
+        }
+    }
+</script>
 </body>
+
 </html>
