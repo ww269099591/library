@@ -1,53 +1,60 @@
 <!DOCTYPE html>
-<div >
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../main.css"/>
-    <script src="../asset/jquery-3.3.1.js"></script>
-    <script src="../asset/base.js"></script>
-    <title>首页</title>
-</head>
-<#if books?? >
-<div class="resultList" id="resultList" >
-    <#list books as book>
-    <div class="list">
-        <p class="bookName">
-            书名: <span>${book.name}</span>
-        </p>
-        <p class="validityTime">
-            作者: <span>${book.author}</span>
-        </p>
-    </div>
-    </#list>
-</div>
 <div>
-</#if>
-<#list 1..pages as t >
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../main.css"/>
+        <script src="../asset/jquery-3.3.1.js"></script>
+        <script src="../asset/base.js"></script>
+        <title>首页</title>
+    </head>
+    <#if books?? >
+    <div class="resultList" id="resultList">
+        <#list books as book>
+        <div class="list">
+            <p class="bookName">
+                书名: <span>${book.name}</span>
+            </p>
+            <p class="validityTime">
+                作者: <span>${book.author}</span>
+            </p>
+        </div>
+        </#list>
+    </div>
+<div>
+</#if >
+<#list firstPage..lastPage as t >
 <button id=${t} class=jump>${t}</button>
 </#list>
 </div>
-
 <script>
-    $(document).ready(function() {
-
+    $(document).ready(function () {
         $(".jump").click(function () {
-            var start=this.id*10+1;
-
-           $.ajax({
-            type:'POST',
-            url:path+"/Book/findAllBooks",
-            dataType:"json",
-            data:{
-                "start":start
-            },
-            success:function (data) {
-                alert(this.id)
-
-            }
-        });
+            var start = this.id * 10;
+            $.ajax({
+                type: 'POST',
+                url: path + "/Book/ajaxFindAllBooks",
+                dataType: "json",
+                data: {
+                    "start": start
+                },
+                success: function (data) {
+                    $("#resultList").html("")
+                    var list = data.books;
+                    if (list && list.length > 0) {
+                        $("#num").text(list.length);
+                        $(list).each(function (i, book) {
+                            var bookHtml = '<div class="list"><p class="bookName">书名 <span>' + book.name +
+                                '</span></p><p class="author">作者: <span>' + book.author + '</span>年 ';
+                            $("#resultList").append(bookHtml);
+                        });
+                    }
+                },
+                error: function () {
+                    alert("请求数据失败")
+                }
+            });
         });
     });
 </script>
-
 </body>
 </html>

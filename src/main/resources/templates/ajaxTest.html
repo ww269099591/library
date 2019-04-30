@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>首页</title>
+</head>
+<link rel="stylesheet" type="text/css" href="../main.css"/>
+<script src="../asset/jquery-3.3.1.js"></script>
+<script src="../asset/base.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<body>
+<button id="/Ajax/modelAndViewTest" class="button">modelAndViewTest</button>
+<button id="/Ajax/modelAndViewTest2" class="button">modelAndViewTest2</button>
+<button id="/Ajax/mapTest" class="button">mapTest</button>
+<button id="/Ajax/mapTest2" class="button">mapTest2</button>
+<button id="/Ajax/stringTest" class="button">stringTest</button>
+<button id="/Ajax/stringTest2" class="button">stringTest2</button>
+<button id="/Ajax/modelTest" class="button">modelTest</button>
+<button id="/Ajax/modelTest2" class="button">modelTest2</button>
+
+
+<input id="result" value="">
+
+<script>
+    $(document).ready(function () {
+        $(".button").click(function () {
+            var url = this.id;
+            $.ajax({
+                type: 'POST',
+                url: path + url,
+                dataType: "json",
+                success: function (data) {
+                    $("#result").val(data.result)
+                },
+                error: function () {
+                    $("#result").val("error")
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

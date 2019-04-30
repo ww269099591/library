@@ -14,12 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 
 @Controller("Book")
 @RequestMapping("Book")
@@ -33,75 +28,69 @@ public class BookController {
     @Value("${wangwei}")
     private String xxx;
 
+    @RequestMapping("toIndex")
+    public String ToIndex() {
+        return "index";
+    }
+
     @RequestMapping("findBooksByKeyWord")
     @ResponseBody
     public ModelAndView findBooksByKeyWord(String keyword) {
         ModelAndView view = new ModelAndView("index");
-        if(keyword==null){
-            view.addObject("result","fail");
+        if (keyword == null) {
+            view.addObject("result", "fail");
             return view;
         }
         List<Book> books = bookService.findBooksByKeyWord(keyword);
-        view.addObject("result","success");
+        view.addObject("result", "success");
         view.addObject("books", books);
-/*        JSONObject result=new JSONObject();
-        result.put("result","success");
-        result.put("books",books);
-        System.out.println(view.toString());
-        System.out.println(result.toJSONString());
-        System.out.println(result.toString());*/
         return view;
     }
 
     @RequestMapping("updateBookCover")
     @ResponseBody
-    public String updateBookCover(HttpServletRequest request, MultipartFile file,Integer bookId) {
-        if (file.isEmpty()){
+    public String updateBookCover(HttpServletRequest request, MultipartFile file, Integer bookId) {
+        if (file.isEmpty()) {
             return "文件为空";
         }
-        if(bookId==null){
+        if (bookId == null) {
             return "书本id为空";
         }
-        String result=bookService.saveCover(bookId,file,filePath);
-
+        String result = bookService.saveCover(bookId, file, filePath);
         return result;
     }
 
     @RequestMapping("toSaveBooks")
-    public String toSaveBooks()
-    {
+    public String toSaveBooks() {
         return "SaveBooks";
     }
-    @RequestMapping("showBooks")
-    public ModelAndView showBooks(){
-        ModelAndView mv=new ModelAndView("showBooks");
-        mv.addObject("imagePath","cover/1d83385d-8c33-4659-b697-e4631ee147a9.jpg");
-        return mv;
-    }
 
-    @RequestMapping("ajaxFindBooksByKeyWord")
+    @RequestMapping("ajaxFindAllBooks")
     @ResponseBody
-    public String ajaxFindBooksByKeyWord(String keyword){
-        JSONObject result=new JSONObject();
-        result.put("result","success");
-        result.put("book","三只小猪");
+    public String ajaxFindBooksByKeyWord(Integer start) {
+        JSONObject result = new JSONObject();
+        Integer pageSize = 10;
+        List<Book> books = bookService.findAllBooks(start, pageSize);
+        result.put("books", books);
         System.out.println(result.toJSONString());
         return result.toString();
     }
-    @RequestMapping("toIndex")
-    public String ToIndex(){
-        return "index";
-    }
+
 
     @RequestMapping("findAllBooks")
     @ResponseBody
-    public ModelAndView findAllBooks(Integer start){
-           Integer pageSize=10;
-           ModelAndView mv=new ModelAndView("ShowBooks");
-           Integer count =bookService.countBooks();
-           List<Book> books= bookService.findAllBooks(start,pageSize);
-           mv.addObject("books",books);
-           mv.addObject("pages",count/pageSize+1);
-           return mv;
+    public ModelAndView findAllBooks() {
+        Integer start=0;
+        Integer pageSize = 10;
+        ModelAndView mv = new ModelAndView("ShowBooks");
+        Integer count = bookService.countBooks();
+        List<Book> books = bookService.findAllBooks(start, pageSize);
+        Integer totalPages=count / pageSize + 1;
+        Integer presentPage=start/pageSize;
+        mv.addObject("presentPage",presentPage);
+        mv.addObject("firstPage",presentPage-5<1?1:presentPage-5);
+        mv.addObject("lastPage",presentPage+5>totalPages?totalPages:presentPage+5);
+        mv.addObject("books", books);
+        return mv;
     }
 }

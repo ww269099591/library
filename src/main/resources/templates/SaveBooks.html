@@ -5,7 +5,7 @@
     <title>上传图片</title>
 </head>
 <body>
-<form action="/Book/updateBookCover" method="post" enctype="multipart/form-data"  role="form"
+<form action="/Book/updateBookCover" method="post" enctype="multipart/form-data" role="form"
       enctype="multipart/form-data">
     <input type="file" name="file" onchange="isPicFile(this.value)">
     <input type="hidden" name="bookId" value="2">
@@ -22,7 +22,7 @@
             suppotFile[2] = "bmp";
             suppotFile[3] = "png";
             suppotFile[4] = "jpeg";
-            for ( var i = 0; i < suppotFile.length; i++) {
+            for (var i = 0; i < suppotFile.length; i++) {
                 if (suppotFile[i] == fileType) {
                     document.getElementById("submit").removeAttribute('disabled');
                     return true;
