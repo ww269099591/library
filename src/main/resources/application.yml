@@ -50,6 +50,4 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-wangwei : myy
-
 filePath: D:/workplace/library/src/main/resources/static/
