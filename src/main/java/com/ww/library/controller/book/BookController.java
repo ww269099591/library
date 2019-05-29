@@ -25,8 +25,6 @@ public class BookController {
     @Value("${filePath}")
     private String filePath;
 
-    @Value("${wangwei}")
-    private String xxx;
 
     @RequestMapping("toIndex")
     public String ToIndex() {
