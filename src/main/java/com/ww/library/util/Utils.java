@@ -8,9 +8,15 @@ public class Utils {
         if ((str == null) || ("".equals(str)) || ("null".equals(str.toLowerCase()))) {
             return true;
         }
-        String pattern = "\\S";
+        String pattern = "";
         Pattern p = Pattern.compile(pattern, 34);
         Matcher m = p.matcher(str);
         return !m.find();
     }
+    public static void main(String args[]){
+
+
+    }
+
+
 }

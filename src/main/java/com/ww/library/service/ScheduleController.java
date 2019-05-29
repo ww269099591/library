@@ -7,8 +7,8 @@ import java.util.Date;
 
 @Component
 public class ScheduleController {
-    @Scheduled(initialDelay = 1000*10,fixedRate = 2*1000)
+   /* @Scheduled(initialDelay = 1000*10,fixedRate = 2*1000)
     public void delay(){
         System.out.println(new Date());
-    }
+    }*/
 }

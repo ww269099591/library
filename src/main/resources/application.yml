@@ -4,6 +4,7 @@ server:
 logging:
   level:
     learning: trace
+  file: springboot.log
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
