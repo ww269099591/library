@@ -1,10 +1,10 @@
 package com.ww.library.controller.book;
 
-import com.alibaba.fastjson.JSONArray;
+
 import com.alibaba.fastjson.JSONObject;
 import com.ww.library.entity.Book;
 import com.ww.library.service.BookService;
-import com.ww.library.util.UploadUtil;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -25,6 +25,8 @@ public class BookController {
     @Value("${filePath}")
     private String filePath;
 
+    private RabbitTemplate rabbitTemplate;
+
 
     @RequestMapping("toIndex")
     public String ToIndex() {
@@ -40,6 +42,8 @@ public class BookController {
             return view;
         }
         List<Book> books = bookService.findBooksByKeyWord(keyword);
+
+        List<Book> books2= bookService.findBooksByKeyWord(keyword);
         view.addObject("result", "success");
         view.addObject("books", books);
         return view;
@@ -90,5 +94,10 @@ public class BookController {
         mv.addObject("lastPage",presentPage+5>totalPages?totalPages:presentPage+5);
         mv.addObject("books", books);
         return mv;
+    }
+
+    @RequestMapping("mqTest")
+    public void mqTest(){
+
     }
 }

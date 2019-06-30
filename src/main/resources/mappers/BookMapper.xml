@@ -140,7 +140,7 @@
  </select>
   
   <select id="findAllBooks" resultType="com.ww.library.entity.Book">
-    select * from book limit #{start},#{end}
+    select * from book limit #{param1},#{param2}
   </select>
 
   <select id="countBooks" parameterType="java.lang.Integer" resultType="java.lang.Integer">

@@ -16,12 +16,14 @@
     <input id="result" value="">
     <p>这不是ajax请求的文字</p>
     <button id="button">ajax请求</button>
-
 </div>
+<button class="redirect" id="ToReaderLogin">登陆界面</button>
+<button class="redirect" id="ToRegist">注册界面</button>
 <script>
 $(document).ready(function(){
-    var keyword=$("#keyword").val();
+
     $("#button").click(function(){
+        var keyword=$("#keyword").val();
        $.ajax({
            type:'POST',
            url:path+"/Book/ajaxFindBooksByKeyWord",
@@ -35,6 +37,11 @@ $(document).ready(function(){
            }
        });
     });
+    $(".redirect").click(function(){
+        var page=this.id;
+        window.location.href="/Reader/jump?page="+page;
+    });
+
 });
 </script>
 </body>

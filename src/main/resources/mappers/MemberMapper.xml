@@ -21,9 +21,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ww.library.entity.Member">
-    insert into member (id, username, password, 
+    insert into member (username, password,
       status)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ww.library.entity.Member">
@@ -83,5 +83,7 @@
   <select id="selectMemberByUsername" parameterType="java.lang.String" resultType="com.ww.library.entity.Member">
     select * from member where username=#{username}
   </select>
+
+
 
 </mapper>

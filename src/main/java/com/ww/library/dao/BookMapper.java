@@ -1,11 +1,13 @@
 package com.ww.library.dao;
 
 import com.ww.library.entity.Book;
+import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
 
+@CacheNamespace
 public interface BookMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -25,7 +27,7 @@ public interface BookMapper {
 
     String findCoverPathById(Integer bookId);
 
-    List<Book> findAllBooks(@Param("start") Integer start,@Param("end") Integer end);
+    List<Book> findAllBooks(/*@Param("start") */Integer start,/*@Param("end")*/ Integer end);
 
     Integer countBooks();
 }

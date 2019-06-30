@@ -1,10 +1,8 @@
 server:
   port: 8080
-
 logging:
   level:
     learning: trace
-  file: springboot.log
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -42,6 +40,15 @@ spring:
       suffix: .html
       #前缀
       #prefix: /htm/
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+  mail:
+    host: smtp.qq.com
+    username: 269099591@qq.com
+    password: lcgxcrnirdrbbggi
+    efault-encoding: UTF-8
 mybatis:
   #实体类所做包
   type-aliases-package: com.ww.library.entity

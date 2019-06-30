@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+
+    <title>首页</title>
+</head>
+    <link rel="stylesheet" type="text/css" href="../main.css"/>
+    <script src="../asset/jquery-3.3.1.js"></script>
+    <script src="../asset/base.js"></script>
+<body>
+<input type=text id="email" placeholder="输入电子邮件">
+<input type="button" id="getVerificationCode">发送验证码</button>
+<input type="text" id="verificationCode" placeholder="输入验证码">
+<input type="button" id="regist">发送验证码</button>
+
+
+
+<script>
+    $(document).ready(function() {
+
+        $("#getVerificationCode").click(function () {
+            var reg = new RegExp("\^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$");
+            var email = $("#email").val();
+            if (reg.test(email)) {
+                $.ajax({
+                    type:'GET',
+                    url:path+"/Reader/getVerificationCode",
+                    dataType:"json",
+                    data:{
+                        "email":email
+                    },
+                    success:function (data) {
+                        alert("验证码已发送到邮箱");
+                    }
+                });
+            } else {
+                alert("输入的邮箱有误，请重新输入");
+            }
+        });
+        $("#regist").click(function(){
+            var email = $("#email").val();
+            var verificationCode=$("#verificationCode").val();
+            window.location.href="/Reader/checkVerificationCode?email="+email+"&&verificationCode="+verificationCode;
+        });
+
+
+
+    });
+
+
+
+
+
+</script>
+</body>
+</html>
