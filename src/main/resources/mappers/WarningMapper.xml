@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ww.library.dao.WarningMapper">
+    <resultMap id="BaseResultMap" type="com.ww.library.entity.Warning">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="warning_tag" jdbcType="VARCHAR" property="warningTag" />
+        <result column="level" jdbcType="VARCHAR" property="level" />
+        <result column="warning_source" jdbcType="INTEGER" property="warningSource" />
+        <result column="target" jdbcType="VARCHAR" property="target" />
+        <result column="detail" jdbcType="VARCHAR" property="time" />
+        <result column="appendix" jdbcType="VARCHAR" property="appendix" />
+        <result column="time" jdbcType="VARCHAR" property="time" />
+        <collection property="proofs" ofType="com.ww.library.entity.Proof">
+            <id column="id" property="id"/>
+            <result column="type" property="name"/>
+            <result column="content" property="content"/>
+        </collection>
+    </resultMap>
+
+
+   
+    <select id="distinctBylevel" resultType="java.util.Map">
+        select count(*) count,level from warning
+        WHERE
+        time between #{startTime} AND  #{endTime}
+        group by level;
+    </select>
+
+    <select id="distinctByTime" resultType="java.util.Map">
+        select count(*) count,DATE_FORMAT( time, '%Y%m%d' ) days from warning
+        WHERE
+        time between #{startTime} AND  #{endTime}
+        group by days;
+    </select>
+
+    <select id="listAll"  resultMap="BaseResultMap">
+        SELECT NAME ,
+        warning_tag warningTag,
+        `level`,
+        warning_source warningSource ,
+        time,
+        detail,
+        appendix,
+        target,
+        b.type,
+        b.content
+        FROM
+        warning a
+        LEFT JOIN proof b ON a.id = b.warning_id
+    </select>
+
+    <insert id="addWarning"  parameterType="com.ww.library.entity.Warning">
+        insert into warning
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="warningTag != null">
+                warning_tag,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="warningSource != null">
+                warning_source,
+            </if>
+            <if test="time != null">
+                time
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="warningTag != null">
+                #{warningTag,jdbcType=VARCHAR},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=VARCHAR},
+            </if>
+            <if test="warningSource != null">
+                #{warningSource,jdbcType=VARCHAR},
+            </if>
+            <if test="time != null">
+                #{time,jdbcType=datetime}
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

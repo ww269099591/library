@@ -7,10 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqConfiguration {
 
-    @Bean
-    public Queue hello() {
-        return new Queue("SuccessMq");
-    }
+
 
 
 }

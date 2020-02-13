@@ -14,9 +14,9 @@
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1/library?serverTimezone=UTC"
+                        connectionURL="jdbc:mysql://192.168.184.101/test?serverTimezone=UTC"
                         userId="root"
-                        password="123456">
+                        password="Ww19951105..">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
