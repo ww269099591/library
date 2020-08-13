@@ -33,4 +33,15 @@ public class SpringTest {
         }
     }
 
+    @Test
+    public void ConcurrentHashMapTest(){
+        new HashMap<>();
+
+    }
+
+    public static void main(String[] args){
+        Map<String,Object> map=new HashMap<>();
+        map.put("a","123");
+        System.out.println(map.get("a").toString());
+    }
 }

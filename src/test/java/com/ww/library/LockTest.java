@@ -1,5 +1,7 @@
 package com.ww.library;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class LockTest {
 
     private Boolean flag = true;
@@ -43,6 +45,12 @@ public class LockTest {
 
 //        ArrayList
     }
+
+    public void TestReenTrantLock(){
+        ReentrantLock lock=new ReentrantLock();
+        lock.lock();
+    }
+
 
 
 }
