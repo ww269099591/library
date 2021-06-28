@@ -1,8 +1,11 @@
 package com.ww.library;
 
 
-import java.io.IOException;
-import java.io.InputStream;
+import com.ww.library.spi.BM;
+import com.ww.library.spi.Car;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Test {
 /*     public static void main(String args[]){
@@ -16,31 +19,6 @@ public class Test {
 
 
 
-    public static void main(String args[]){
-       char[] str={'a','b','c','d','a','b','c'};
-       int[] next=new int[8];
-        cal_next(str,next);
-        InputStream inputStream=null;
-        try{
-             inputStream=new InputStream() {
-                @Override
-                public int read() throws IOException {
-                    return 0;
-                }
-            };
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            try {
-                inputStream.close();
-            }catch (Exception e){
-
-            }
-
-        }
-
-
-    }
 
     static void cal_next(char[] str, int[] next )
     {
@@ -61,5 +39,7 @@ public class Test {
                 k = next[k];//往前回溯
         }
     }
+
+
 
 }
